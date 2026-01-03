@@ -1,0 +1,32 @@
+services:
+  #Main database
+  mongo:
+    image: mongo:8.2.3-noble
+    container_name: ecofood_mongo_db
+    restart: always
+    ports:
+      - '${MONGO_PORT}:${MONGO_PORT}'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    volumes:
+      - ./.docker/mongo/data:/data/db
+
+  mongo-express:
+    image: mongo-express:1.0.2-20-alpine3.19
+    container_name: ecofood_mongo_express
+    restart: always
+    ports:
+      - '${ME_PORT}:${ME_PORT}'
+    environment:
+      ME_CONFIG_MONGODB_AUTH_USERNAME: ${ME_CONFIG_MONGODB_AUTH_USERNAME}
+      ME_CONFIG_MONGODB_AUTH_PASSWORD: ${ME_CONFIG_MONGODB_AUTH_PASSWORD}
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:${MONGO_PORT}/
+    depends_on:
+      - mongo
+
+  redis:
+    image: redis:8.4.0-alpine
+    container_name: ecofood_redis
+    ports:
+      - '${REDIS_PORT}:${REDIS_PORT}'
