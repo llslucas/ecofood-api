@@ -12,12 +12,13 @@ Foco: Levantar o ambiente e garantir que o banco esteja pronto para dados espaci
 
 Foco: Segurança e distinção entre quem doa e quem recebe.
 
-- [ ] Schema User: Criar Schema do Mongoose para Usuário (email, senha com bcrypt, role: 'DOADOR' | 'COLETOR').
-- [ ] JWT Setup: Implementar Passport-JWT e estratégia local.
-- [ ] Endpoints:
-  - [ ] POST /auth/register: Criar usuário.
-  - [ ] POST /auth/login: Retornar o Token JWT.
-- [ ] Guards: Criar um Guard global ou por rota para proteger endpoints (Ex: @UseGuards(JwtAuthGuard)).
+- [x] Schema User: Criar Schema do Mongoose para Usuário (email, senha com bcrypt, role: 'DOADOR' | 'COLETOR').
+- [x] JWT Setup: Implementar Passport-JWT e estratégia local.
+- [x] Endpoints:
+  - [x] POST /auth/register: Criar usuário.
+  - [x] POST /auth/login: Retornar o Token JWT.
+- [x] Validation Pipeline: Criar um Pipeline global para validar conteúdo de requisições.
+- [x] Guards: Criar um Guard global ou por rota para proteger endpoints (Ex: @UseGuards(JwtAuthGuard)).
 
 ### 📅 Dia 3: CRUD de Doações (Core Domain)
 
