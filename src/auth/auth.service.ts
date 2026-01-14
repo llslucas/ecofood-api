@@ -12,7 +12,10 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async validateUser(email: string, pass: string): Promise<User | null> {
+  async validateUser(
+    email: string,
+    pass: string,
+  ): Promise<Partial<User> | null> {
     const user = await this.usersService.findOne(email);
 
     if (!user?.password) {
@@ -20,8 +23,7 @@ export class AuthService {
     }
 
     if (user && (await bcrypt.compare(pass, user.password))) {
-      const result = user.toObject<User>();
-      delete result.password;
+      const { password: _, ...result } = user.toObject<User>();
       return result;
     }
 

@@ -9,6 +9,12 @@ export interface TokenPayload {
   role: string;
 }
 
+export interface AuthenticatedUser {
+  userId: string;
+  email: string;
+  role: string;
+}
+
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(configService: ConfigService) {
