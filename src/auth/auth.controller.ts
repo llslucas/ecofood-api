@@ -2,6 +2,7 @@ import { Body, Controller, Post, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { LoginDto } from './dto/login.dto';
+import { UserDocument } from 'src/users/schemas/user.schema';
 
 @Controller('auth')
 export class AuthController {
@@ -13,7 +14,7 @@ export class AuthController {
     if (!user) {
       throw new UnauthorizedException('Credenciais inválidas');
     }
-    return this.authService.login(user);
+    return this.authService.login(user as UserDocument);
   }
 
   @Post('register')
