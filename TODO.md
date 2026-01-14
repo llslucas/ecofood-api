@@ -24,12 +24,12 @@ Foco: Segurança e distinção entre quem doa e quem recebe.
 
 Foco: O doador precisa conseguir colocar o alimento no sistema.
 
-- [ ] Schema Donation: Criar Schema (titulo, qtd, validade, status: 'DISPONIVEL').
-  - [ ] Incluir campo location do tipo Point (GeoJSON).
-- [ ] DTOs: Criar DTOs para validação de entrada (usando class-validator).
-- [ ] Create Endpoint: POST /donations (Apenas para perfil 'DOADOR').
-- [ ] Pegar o ID do usuário logado via Request (JWT) e vincular à doação.
-- [ ] List Own: GET /donations/me (Listar o que eu doei).
+- [x] Schema Donation: Criar Schema (titulo, qtd, validade, status: 'DISPONIVEL').
+  - [x] Incluir campo location do tipo Point (GeoJSON).
+- [x] DTOs: Criar DTOs para validação de entrada (usando class-validator).
+- [x] Create Endpoint: POST /donations (Apenas para perfil 'DOADOR').
+- [x] Pegar o ID do usuário logado via Request (JWT) e vincular à doação.
+- [x] List Own: GET /donations/me (Listar o que eu doei).
 
 ### 📅 Dia 4: Geolocalização e Busca Espacial
 
