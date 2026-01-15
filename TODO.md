@@ -55,10 +55,10 @@ Foco: Garantir que duas pessoas não peguem a mesma doação.
 
 Foco: Limpeza automática e qualidade de código.
 
-- [ ] Cron Job: Configurar @nestjs/schedule.
-- [ ] Tarefa: Rodar todo dia à 00:00.
-- [ ] Lógica: Buscar itens onde validade < now E status == 'DISPONIVEL'.
-- [ ] Ação: Atualizar status para 'EXPIRADO'.
+- [x] Cron Job: Configurar @nestjs/schedule.
+- [x] Tarefa: Rodar todo dia à 00:00.
+- [x] Lógica: Buscar itens onde validade < now E status == 'DISPONIVEL'.
+- [x] Ação: Atualizar status para 'EXPIRADO'.
 - [ ] Tratamento de Erros: Criar um ExceptionFilter global para formatar erros de forma amigável.
 - [ ] Seed Data: Criar um script simples para popular o banco com doações em lat/longs próximas para testar.
 
