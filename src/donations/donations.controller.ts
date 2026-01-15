@@ -17,6 +17,7 @@ import { UserRole } from 'src/users/schemas/user.schema';
 import { DonationsService } from './donations.service';
 import { CreateDonationDto } from './dto/create-donation.dto';
 import { GetDonationsQueryDto } from './dto/get-donations-query.dto';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 
 @UseGuards(JwtAuthGuard)
 @Controller('donations')
@@ -38,8 +39,8 @@ export class DonationsController {
   }
 
   @Get('me')
-  findAll(@Request() req: { user: jwtStrategy.AuthenticatedUser }) {
-    return this.donationsService.findAllByUser(req.user.userId);
+  async findAll(@CurrentUser() user: jwtStrategy.AuthenticatedUser) {
+    return await this.donationsService.findAllByUser(user.userId);
   }
 
   @Get('nearby')
@@ -55,22 +56,22 @@ export class DonationsController {
   @Patch(':id/reserve')
   async reserve(
     @Param('id') id: string,
-    @Request() req: { user: jwtStrategy.AuthenticatedUser },
+    @CurrentUser() user: jwtStrategy.AuthenticatedUser,
   ) {
-    if (req.user.role !== UserRole.COLETOR) {
+    if (user.role !== UserRole.COLETOR) {
       throw new ForbiddenException(
         'Apenas coletores podem reservar alimentos.',
       );
     }
 
-    return await this.donationsService.reserve(id, req.user.userId);
+    return await this.donationsService.reserve(id, user.userId);
   }
 
   @Delete(':id')
   remove(
     @Param('id') id: string,
-    @Request() req: { user: jwtStrategy.AuthenticatedUser },
+    @CurrentUser() user: jwtStrategy.AuthenticatedUser,
   ) {
-    return this.donationsService.remove(id, req.user.userId);
+    return this.donationsService.remove(id, user.userId);
   }
 }
