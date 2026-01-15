@@ -28,7 +28,7 @@ export class DonationsController {
     @Body() createDonationDto: CreateDonationDto,
     @Request() req: { user: jwtStrategy.AuthenticatedUser },
   ) {
-    if (req.user.role !== 'DOADOR') {
+    if (req.user.role !== UserRole.DOADOR) {
       throw new ForbiddenException(
         'Apenas doadores podem cadastrar alimentos.',
       );
@@ -57,7 +57,7 @@ export class DonationsController {
     @Param('id') id: string,
     @Request() req: { user: jwtStrategy.AuthenticatedUser },
   ) {
-    if ((req.user.role as UserRole) !== UserRole.COLETOR) {
+    if (req.user.role !== UserRole.COLETOR) {
       throw new ForbiddenException(
         'Apenas coletores podem reservar alimentos.',
       );

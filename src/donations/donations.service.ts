@@ -26,7 +26,7 @@ export class DonationsService {
     const newDonation = new this.donationModel({
       ...createDonationDto,
       donor: userId,
-      status: 'DISPONIVEL',
+      status: DonationStatus.DISPONIVEL,
     });
     return newDonation.save();
   }
@@ -43,7 +43,7 @@ export class DonationsService {
 
     return this.donationModel
       .find({
-        status: 'DISPONIVEL',
+        status: DonationStatus.DISPONIVEL,
         location: {
           $near: {
             $geometry: {
