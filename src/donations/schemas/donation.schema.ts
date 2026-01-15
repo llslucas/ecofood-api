@@ -47,6 +47,12 @@ export class Donation {
     type: string;
     coordinates: number[];
   };
+
+  @Prop({
+    type: Types.ObjectId,
+    ref: 'User',
+  })
+  collectedBy?: User;
 }
 
 export const DonationSchema = SchemaFactory.createForClass(Donation);

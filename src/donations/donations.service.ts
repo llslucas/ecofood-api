@@ -1,9 +1,17 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateDonationDto } from './dto/create-donation.dto';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Donation, DonationDocument } from './schemas/donation.schema';
 import { Model, Types } from 'mongoose';
+import { CreateDonationDto } from './dto/create-donation.dto';
 import { GetDonationsQueryDto } from './dto/get-donations-query.dto';
+import {
+  Donation,
+  DonationDocument,
+  DonationStatus,
+} from './schemas/donation.schema';
 
 @Injectable()
 export class DonationsService {
@@ -75,5 +83,29 @@ export class DonationsService {
     }
 
     await this.donationModel.findByIdAndDelete(id).exec();
+  }
+
+  async reserve(id: string, userId: string): Promise<Donation> {
+    const updatedDonation = await this.donationModel.findOneAndUpdate(
+      {
+        _id: id,
+        status: DonationStatus.DISPONIVEL,
+      },
+      {
+        $set: {
+          status: DonationStatus.RESERVADO,
+          collectedBy: userId,
+        },
+      },
+      { new: true },
+    );
+
+    if (!updatedDonation) {
+      throw new ConflictException(
+        'Esta doação não está mais disponível ou não existe.',
+      );
+    }
+
+    return updatedDonation;
   }
 }
