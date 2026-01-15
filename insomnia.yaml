@@ -1,0 +1,334 @@
+type: collection.insomnia.rest/5.0
+schema_version: '5.1'
+name: EcoFood API
+meta:
+  id: wrk_a1510252012342558a98ca49408dbe26
+  created: 1767483725606
+  modified: 1767483725606
+  description: ''
+collection:
+  - name: Auth
+    meta:
+      id: fld_ee79f9e2638647ad93d18a4ab44cf473
+      created: 1767483775971
+      modified: 1768444561884
+      sortKey: -1767483775971
+      description: ''
+    children:
+      - url: '{{ _.URL }}/register'
+        name: Register
+        meta:
+          id: req_5ba97ec7e358411da0ec3caa916a46bd
+          created: 1767483778176
+          modified: 1768443812327
+          isPrivate: false
+          description: ''
+          sortKey: -1767483778176
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"name": "Restaurante Teste",
+            	"email": "coletor@email.com",
+            	"password": "123456",
+            	"role": "COLETOR"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ''
+            disabled: false
+        scripts:
+          afterResponse: |-
+            const jsonBody = insomnia.response.json();
+            insomnia.environment.set("BEARER_TOKEN", jsonBody.access_token);
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: '{{ _.URL }}/login'
+        name: Login
+        meta:
+          id: req_faa156fddb4a47818fd44e98bf8979bf
+          created: 1767483872019
+          modified: 1768444560490
+          isPrivate: false
+          description: ''
+          sortKey: -1767483778076
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email": "teste3@email.com",
+            	"password": "123456"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ''
+            disabled: false
+        scripts:
+          afterResponse: |-
+            const jsonBody = insomnia.response.json();
+            insomnia.environment.set("BEARER_TOKEN", jsonBody.access_token);
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    authentication:
+      type: none
+    environment:
+      URL: '{{ _.BASE_URL }}/auth'
+  - name: Users
+    meta:
+      id: fld_aaab6c62e5ed400991c9ccd25e3db678
+      created: 1767488605946
+      modified: 1768432524358
+      sortKey: -1767488605946
+      description: ''
+    children:
+      - url: '{{ _.URL }}/me'
+        name: Me
+        meta:
+          id: req_47ca60b428ca47a79ac452c5a9caafc3
+          created: 1767488607970
+          modified: 1767491217690
+          isPrivate: false
+          description: ''
+          sortKey: -1767488607970
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ''
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    authentication:
+      type: bearer
+      token: '{{ _.BEARER_TOKEN }}'
+    environment:
+      URL: '{{ _.BASE_URL }}/users'
+  - name: Donations
+    meta:
+      id: fld_54c146eda08647378f12174f2c6caf02
+      created: 1768432479873
+      modified: 1768432521243
+      sortKey: -1767486190958.5
+      description: ''
+    children:
+      - url: '{{ _.URL }}'
+        name: Create
+        meta:
+          id: req_022e6597f8b4401790759a00f3d42b5c
+          created: 1768432479876
+          modified: 1768441455729
+          isPrivate: false
+          description: ''
+          sortKey: -1767488607970
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "title": "Cesta de Legumes e Verduras",
+            	"description": "Teste de cadastro",
+              "quantity": "5kg",
+              "expiration": "2026-01-13T18:00:00.000Z",
+              "location": {
+                "type": "Point",
+                "coordinates": [
+                  -46.633308,
+                  -23.550520
+                ]
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ''
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: '{{ _.URL }}/me'
+        name: Find All By User
+        meta:
+          id: req_48fea47f653d4a4381c4a4f34d4cacfc
+          created: 1768433259017
+          modified: 1768433318716
+          isPrivate: false
+          description: ''
+          sortKey: -1767488608070
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ''
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: '{{ _.URL }}/6968286b69f2bdd13fe5bf74'
+        name: Find One
+        meta:
+          id: req_973c470f3ff44feaac08a816c4014602
+          created: 1768433604074
+          modified: 1768444500568
+          isPrivate: false
+          description: ''
+          sortKey: -1768433604074
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ''
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: '{{ _.URL }}/696826126cbedcc8b507474d'
+        name: Delete
+        meta:
+          id: req_db538f67c40c4cbcb6a1daf5862324d0
+          created: 1768433745060
+          modified: 1768433763645
+          isPrivate: false
+          description: ''
+          sortKey: -1768433745060
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ''
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: '{{ _.URL }}/nearby'
+        name: Nearby
+        meta:
+          id: req_f4b15eca8a624b9ab59c50ab3b96522f
+          created: 1768435427012
+          modified: 1768435807393
+          isPrivate: false
+          description: ''
+          sortKey: -1768435427012
+        method: GET
+        body:
+          mimeType: application/json
+          text: ''
+        parameters:
+          - name: lat
+            value: '-23.5606997'
+            description: ''
+            disabled: false
+          - name: long
+            value: '-46.657359'
+            description: ''
+            disabled: false
+          - name: radius
+            value: '3'
+            description: ''
+            disabled: false
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ''
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: '{{ _.URL }}/6968286b69f2bdd13fe5bf72/reserve'
+        name: Reserve
+        meta:
+          id: req_baf28d26a7ea476abe6b58d0b1411c3f
+          created: 1768436688933
+          modified: 1768436746979
+          isPrivate: false
+          description: ''
+          sortKey: -1768436688933
+        method: PATCH
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ''
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    authentication:
+      type: bearer
+      token: '{{ _.BEARER_TOKEN }}'
+    environment:
+      URL: '{{ _.BASE_URL }}/donations'
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_573a752ef5787191398e7672f96d4381086bb601
+    created: 1767483725611
+    modified: 1768444561877
+environments:
+  name: Base Environment
+  meta:
+    id: env_573a752ef5787191398e7672f96d4381086bb601
+    created: 1767483725608
+    modified: 1768444561881
+    isPrivate: false
+  data:
+    BASE_URL: http://localhost:3000
+    BEARER_TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RlM0BlbWFpbC5jb20iLCJzdWIiOiI2OTU5YjcxYmZhOWVhNzlmYTk0ODlmMzMiLCJyb2xlIjoiRE9BRE9SIiwiaWF0IjoxNzY4NDQ0NTYxLCJleHAiOjE3Njg1MzA5NjF9._oq6o1-JcbOUY55B-5T2jRwrGakr8fKIZpnBFv1rpZQ
