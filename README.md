@@ -20,28 +20,28 @@ API RESTful desenvolvida com NestJS para conectar restaurantes doadores a entida
 ### Passo a passo
 
 1. **Clone o repositório**
-   \`\`\`bash
+   ```bash
    git clone https://github.com/seu-usuario/ecofood-api.git
    cd ecofood-api
-   \`\`\`
+   ```
 
 2. **Configure as Variáveis de Ambiente**
    Crie um arquivo \`.env\` na raiz baseado no exemplo:
-   \`\`\`env
+   ```env
    MONGO_URI=mongodb://root:example@localhost:27017/ecofood?authSource=admin
    JWT_SECRET=sua_chave_super_secreta
-   \`\`\`
+   ```
 
 3. **Suba o Banco de Dados**
-   \`\`\`bash
+   ```bash
    docker-compose up -d
-   \`\`\`
+   ```
 
 4. **Instale as dependências e rode**
-   \`\`\`bash
+   ```bash
    npm install
    npm run start:dev
-   \`\`\`
+   ```
 
 5. **Acesse a Documentação**
    Abra seu navegador em: `http://localhost:3000/api/docs`
