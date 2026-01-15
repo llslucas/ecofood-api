@@ -44,12 +44,12 @@ Foco: Usar o poder do MongoDB para encontrar comida perto.
 
 Foco: Garantir que duas pessoas não peguem a mesma doação.
 
-- [ ] Endpoint Reserva: PATCH /donations/:id/reserve (Apenas perfil 'COLETOR').
-- [ ] Lógica Atômica: Usar findOneAndUpdate do Mongoose.
-- [ ] Query: \_id: id AND status: 'DISPONIVEL'.
-- [ ] Update: status: 'RESERVADO', collectedBy: userId.
-- [ ] Isso previne "Race Condition" (condição de corrida).
-- [ ] Validação: Retornar erro 409 (Conflict) se o item já foi levado.
+- [x] Endpoint Reserva: PATCH /donations/:id/reserve (Apenas perfil 'COLETOR').
+- [x] Lógica Atômica: Usar findOneAndUpdate do Mongoose.
+- [x] Query: \_id: id AND status: 'DISPONIVEL'.
+- [x] Update: status: 'RESERVADO', collectedBy: userId.
+- [x] Isso previne "Race Condition" (condição de corrida).
+- [x] Validação: Retornar erro 409 (Conflict) se o item já foi levado.
 
 ### 📅 Dia 6: Background Jobs (Validade) e Refinamento
 
