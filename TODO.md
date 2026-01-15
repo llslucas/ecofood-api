@@ -59,7 +59,7 @@ Foco: Limpeza automática e qualidade de código.
 - [x] Tarefa: Rodar todo dia à 00:00.
 - [x] Lógica: Buscar itens onde validade < now E status == 'DISPONIVEL'.
 - [x] Ação: Atualizar status para 'EXPIRADO'.
-- [ ] Tratamento de Erros: Criar um ExceptionFilter global para formatar erros de forma amigável.
+- [x] Tratamento de Erros: Criar um ExceptionFilter global para formatar erros de forma amigável.
 - [ ] Seed Data: Criar um script simples para popular o banco com doações em lat/longs próximas para testar.
 
 ### 📅 Dia 7: Documentação e Teste Final
