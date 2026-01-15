@@ -60,13 +60,12 @@ Foco: Limpeza automática e qualidade de código.
 - [x] Lógica: Buscar itens onde validade < now E status == 'DISPONIVEL'.
 - [x] Ação: Atualizar status para 'EXPIRADO'.
 - [x] Tratamento de Erros: Criar um ExceptionFilter global para formatar erros de forma amigável.
-- [ ] Seed Data: Criar um script simples para popular o banco com doações em lat/longs próximas para testar.
 
 ### 📅 Dia 7: Documentação e Teste Final
 
 Foco: Entregar algo profissional.
 
-- [ ] Swagger: Configurar o @nestjs/swagger (NestJS faz isso quase sozinho com Decorators).
-- [ ] Insomnia: Exportar a collection para facilitar o teste.
-- [ ] README: Escrever como rodar o projeto (Docker command, env vars).
-- [ ] Demo: Gravar um GIF ou vídeo curto simulando o fluxo: Cadastro -> Postagem -> Busca (mostrando a distância) -> Reserva.
+- [x] Swagger: Configurar o @nestjs/swagger (NestJS faz isso quase sozinho com Decorators).
+- [x] Insomnia: Exportar a collection para facilitar o teste.
+- [x] README: Escrever como rodar o projeto (Docker command, env vars).
+- [x] Demo: Gravar um GIF ou vídeo curto simulando o fluxo: Cadastro -> Postagem -> Busca (mostrando a distância) -> Reserva.
