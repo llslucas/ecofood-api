@@ -61,9 +61,15 @@ export class DonationsController {
 
   @Get(':id')
   @ApiOperation({
-    summary: 'Busca uma doação pelo ID',
+    summary: 'Busca uma doação pelo ID (Apenas Coletor)',
   })
-  findOne(@Param('id') id: string) {
+  findOne(
+    @Param('id') id: string,
+    @CurrentUser() user: jwtStrategy.AuthenticatedUser,
+  ) {
+    if (user.role !== UserRole.COLETOR) {
+      throw new ForbiddenException('Permissão negada.');
+    }
     return this.donationsService.findOne(id);
   }
 
