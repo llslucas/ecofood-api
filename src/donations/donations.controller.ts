@@ -5,6 +5,7 @@ import {
   Get,
   Param,
   Post,
+  Query,
   Request,
   UseGuards,
 } from '@nestjs/common';
@@ -12,6 +13,7 @@ import * as jwtStrategy from 'src/auth/jwt.strategy';
 import { JwtAuthGuard } from 'src/common/guards/jwt-auth.guard';
 import { DonationsService } from './donations.service';
 import { CreateDonationDto } from './dto/create-donation.dto';
+import { GetDonationsQueryDto } from './dto/get-donations-query.dto';
 
 @UseGuards(JwtAuthGuard)
 @Controller('donations')
@@ -33,6 +35,11 @@ export class DonationsController {
   @Get('me')
   findAll(@Request() req: { user: jwtStrategy.AuthenticatedUser }) {
     return this.donationsService.findAllByUser(req.user.userId);
+  }
+
+  @Get('nearby')
+  findNearby(@Query() query: GetDonationsQueryDto) {
+    return this.donationsService.findNearby(query);
   }
 
   @Get(':id')

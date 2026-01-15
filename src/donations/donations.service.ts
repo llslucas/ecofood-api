@@ -3,6 +3,7 @@ import { CreateDonationDto } from './dto/create-donation.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Donation, DonationDocument } from './schemas/donation.schema';
 import { Model, Types } from 'mongoose';
+import { GetDonationsQueryDto } from './dto/get-donations-query.dto';
 
 @Injectable()
 export class DonationsService {
@@ -26,6 +27,25 @@ export class DonationsService {
     return this.donationModel
       .find({ donor: userId })
       .sort({ createdAt: -1 })
+      .exec();
+  }
+
+  async findNearby(query: GetDonationsQueryDto): Promise<Donation[]> {
+    const { lat, long, radius } = query;
+
+    return this.donationModel
+      .find({
+        status: 'DISPONIVEL',
+        location: {
+          $near: {
+            $geometry: {
+              type: 'Point',
+              coordinates: [long, lat],
+            },
+            $maxDistance: radius * 1000, // Converter km para metros
+          },
+        },
+      })
       .exec();
   }
 

@@ -35,10 +35,10 @@ Foco: O doador precisa conseguir colocar o alimento no sistema.
 
 Foco: Usar o poder do MongoDB para encontrar comida perto.
 
-- [ ] Indexação: Criar índice 2dsphere no campo location do Schema Donation (Crucial para performance).
-- [ ] Endpoint de Busca: GET /donations/nearby. (Recebe: lat, long e raio (km) via Query Params.)
-- [ ] Query Mongo: Implementar o operador $near ou $geoWithin no Service.
-- [ ] Filtro: Garantir que só retorne itens com status 'DISPONIVEL'.
+- [x] Indexação: Criar índice 2dsphere no campo location do Schema Donation (Crucial para performance).
+- [x] Endpoint de Busca: GET /donations/nearby. (Recebe: lat, long e raio (km) via Query Params.)
+- [x] Query Mongo: Implementar o operador $near ou $geoWithin no Service.
+- [x] Filtro: Garantir que só retorne itens com status 'DISPONIVEL'.
 
 ### 📅 Dia 5: Sistema de Reserva e Concorrência
 
